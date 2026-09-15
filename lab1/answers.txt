@@ -1,0 +1,25 @@
+Q1: Four commands used to assemble, compile, link, and run:
+
+1. gcc -c array_sum.S -o array_sum.o
+2. gcc -Wall -Wpedantic -std=c17 -march=haswell -c array_sum_speed.c -o array_sum_speed.o
+3. gcc array_sum.o array_sum_speed.o -o array_sum_speed
+4. ./array_sum_speed 1000000
+
+Q2: Compiling array_sum.c (without optimization):
+
+Command: gcc -Wall -Wpedantic -std=c17 -march=haswell -c array_sum.c -o array_sum.o
+
+The C implementation ran at around 4.80 ms compared to the assembly at around
+1.72 ms, making the C version about 3x slower. This makes sense since the
+compiler without any optimization flags doesn't put much effort into making the
+code fast.
+
+Q3: Adding -O3 optimization:
+
+Command: gcc -Wall -Wpedantic -std=c17 -march=haswell -O3 -c array_sum.c -o array_sum.o
+
+With -O3 added, the C implementation sped up dramatically to around 0.41 ms,
+which is about 4x faster than the hand-written assembly (1.72 ms) and about
+12x faster than the C without -O3 (4.80 ms). The -O3 flag tells the compiler
+to work much harder at making the code fast, and it ends up doing a better job
+than the simple assembly we wrote by hand.
